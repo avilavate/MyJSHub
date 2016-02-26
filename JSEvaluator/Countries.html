@@ -1,0 +1,43 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <meta charset="utf-8" />
+    <script src="Scripts/jquery-2.2.0.js"></script>
+    <script src="Scripts/angular.js"></script>
+    <script src="graph.js"></script>
+</head>
+<body ng-app="app" ng-controller="ctrl">
+    <p>X is Education Level</p>
+    <p>Y is Medication Level</p>
+
+    <fieldset>
+        <legend>{{name}}</legend>
+        <div>
+            Name: <input type="text" ng-model="name" />
+            Population: <input type="number" ng-model="population" />
+            Medication(%): <input type="number" ng-model="medication" />
+            Education(%): <input type="number" ng-model="education" />
+            <button ng-click="addCountry(name,population,medication,education)">Add Country</button>
+        </div>
+    </fieldset>
+    <svg width="1000" height="1000" id="svg">
+        <!--Vertical line-->
+        <line style="stroke-width:2;stroke:rgb(0, 0, 0)" x1="0" y1="1000" x2="0" y2="0"></line>
+        <!--Horizontal Line-->
+        <line style="stroke-width:2;stroke:rgb(0,0,0)" x1="0" y1="1000" x2="1000" y2="1000"></line>
+
+
+        <circle ng-repeat="i in circles" stroke="black" fill="black" ng-attr-cx="{{i}}" cy="1000" r="5"></circle>
+
+        <circle ng-repeat="i in circles" stroke="black" fill="black" ng-attr-cy={{i}} cx="0" r="5"></circle>
+
+
+        <circle ng-repeat="c in Circles" stroke="black" fill="red" ng-attr-cy="{{c.y}}" ng-attr-cx="{{c.x}}" r="{{c.radious()}}"></circle>
+
+        <text  ng-repeat="c in Circles"  ng-attr-y="{{c.y}}" ng-attr-x="{{c.x-6}}" font-family="Verdana" font-size="20" fill="blue"> {{c.name}} </text>
+
+
+    </svg>
+</body>
+</html>
